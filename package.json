@@ -1,0 +1,27 @@
+{
+  "name": "console-board",
+  "version": "0.0.1",
+  "description": "Display all console output in real html",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiaobuu/console-board.git"
+  },
+  "keywords": [
+    "console",
+    "proxy",
+    "debug",
+    "developer",
+    "experience",
+    "vanilla"
+  ],
+  "author": "Xiaobu <yaotianyu0512@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xiaobuu/console-board/issues"
+  },
+  "homepage": "https://github.com/xiaobuu/console-board#readme"
+}
