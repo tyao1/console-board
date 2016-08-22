@@ -1,0 +1,10 @@
+.DS_Store
+*.swp
+
+lib
+#/demos/**/index.js
+
+node_modules
+.idea
+
+npm-debug.log
