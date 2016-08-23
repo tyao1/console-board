@@ -45,6 +45,10 @@
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "react-router": "^2.0.0-rc6",
-    "webpack": "^1.12.13"
+    "webpack": "^1.12.13",
+    "webpack-dev-server": "^1.15.0"
+  },
+  "dependencies": {
+    "moment": "^2.14.1"
   }
 }

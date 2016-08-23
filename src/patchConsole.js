@@ -4,6 +4,8 @@ const isProxyAvailable = !!window.Proxy;
 // original console
 const __console = window.console;
 
+// array slice
+const slice = Array.prototype.slice;
 /*
   @param: fn  - function to run when console.* is called
   @return: patched console object
@@ -17,7 +19,7 @@ export default function patchConsole(fn) {
           const func = target[name];
           if (typeof func === 'function') {
             const patched = function () {
-              fn({ name, date: Date.now(), args: arguments });
+              fn({ name, date: Date.now(), args: slice.call(arguments) });
               func.apply(__console, arguments);
             };
             if (Object.getOwnPropertyDescriptor(patched, 'name').configurable) {
@@ -43,7 +45,7 @@ export default function patchConsole(fn) {
     const func = clone[name];
     if (typeof func === 'function') {
       const patched = function () {
-        fn({ name, date: Date.now(), args: arguments });
+        fn({ name, date: Date.now(), args: slice.call(arguments) });
         func.apply(__console, arguments);
       };
       if (Object.getOwnPropertyDescriptor(patched, 'name').configurable) {

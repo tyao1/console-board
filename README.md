@@ -13,8 +13,9 @@ And some logging options provide plain text output which is not joyful to work w
 ## TODO
 - [x] Proxy `console` on Chrome and Safari
 - [ ] Maintain states
-- [ ] React Component
+- [ ] React component
+- [ ] Accurate output for complex structure
 - [ ] Interactive
 - [ ] Persistence
-- [ ] React Native Component
-- [ ] Plain JS Output
+- [ ] React Native component
+- [ ] Plain JS component
