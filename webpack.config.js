@@ -10,8 +10,8 @@ module.exports = {
     index: [path.join(src, 'index.js')],
   },
   output: {
-    path: path.join(__dirname, 'lib'),
-    filename: 'console-board.js',
+    path: path.join(__dirname, 'libs'),
+    filename: 'index.js',
     sourceMapFilename: 'console-board.map',
     library: 'ConsoleBoard',
     libraryTarget: 'umd'

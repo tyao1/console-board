@@ -1,13 +1,13 @@
 {
   "name": "console-board",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Display all console output in real html",
   "main": "libs/index.js",
   "scripts": {
     "build": "webpack",
     "build:demos": "webpack --config webpack.demos.config.js",
     "dev": "node ./devServer",
-    "prerelease": "rm -fr lib && npm run build",
+    "prerelease": "rm -fr libs && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

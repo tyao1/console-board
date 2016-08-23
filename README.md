@@ -1,6 +1,21 @@
 # console-board
 [WIP] Display all console output in real html
 
+## Introduction
+
+### Install
+`npm i console-board --save-dev`
+
+### Use
+`import { injectRender } from 'console-board';`
+And Inject it at your root component
+` {injectRender()} `
+Then the component will be used in development and the `console` will be patched
+
+### API
+[TODO]
+
+
 ## Why
 Sometimes the developer console is not available to use, and logging becoming tedious.
 And some logging options provide plain text output which is not joyful to work with.
@@ -12,8 +27,8 @@ And some logging options provide plain text output which is not joyful to work w
 
 ## TODO
 - [x] Proxy `console` on Chrome and Safari
-- [ ] Maintain states
-- [ ] React component
+- [x] Maintain states
+- [x] React component
 - [ ] Accurate output for complex structure
 - [ ] Interactive
 - [ ] Persistence
