@@ -1,5 +1,7 @@
 # console-board
-[WIP] Display all console output in real html
+Display all console output in real html
+
+[Check the demo](https://xiaobuu.github.io/console-board/demos/)
 
 ## Introduction
 
