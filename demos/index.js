@@ -9,8 +9,8 @@ class Home extends Component {
     return (
       <div>
         <h1 style={{ textAlign: 'center' }}>console-board</h1>
-        <p style={{ textAlign: 'center' }}>Injecting console's output to the dom</p>
-        {injectRender()}
+        <p style={{ textAlign: 'center' }}>Displaying console's output to the DOM</p>
+        {injectRender({ toggleByTouch: false, showOnInit: true, showInput: true })}
       </div>
     );
   }

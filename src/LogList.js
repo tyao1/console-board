@@ -1,18 +1,25 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import patchConsole from '../src/patchConsole';
-import { add } from './reduceUtil';
+import { add, clear } from './reduceUtil';
 import LogItem from './LogItem';
+import Input from './Input';
 
 export default class LogList extends Component {
+
+
+  static propTypes = {
+    toggleByTouch: PropTypes.bool,
+    showOnInit: PropTypes.bool, 
+  };
 
   constructor(props) {
     super(props);
     this.state = {
-      show: true,
+      show: props.showOnInit,
       enlarge: false,
       logs: [],
     };
-    // patch global console
+    // patch global console as early as possible
     window.console = patchConsole(({ name, date, args }) => {
       try {
         this.setState({ logs: add(this.state.logs, { name, date, args }) });
@@ -20,6 +27,7 @@ export default class LogList extends Component {
         patchConsole.originConsole.error('[PATCH ERROR]', ex);
       }
     });
+
     // mitigate call loop on error
     // if (process.env.NODE_ENV !== 'production') {
     //   window.cons = patchedConsole;
@@ -27,6 +35,27 @@ export default class LogList extends Component {
     // window.console = patchedConsole;
     // console = patchedConsole;
     // }
+  }
+
+  componentDidMount() {
+    // listening to touch
+    if (this.props.toggleByTouch) {
+      this.touchCount = 0;
+      window.addEventListener('touchend', (evt) => {
+        this.touchCount++;
+        if (this.touchCount === 3) {
+          this.setState({ show: !this.state.show });
+          this.touchCount = 0;
+          clearTimeout(this.clearHandler);
+          return;
+        }
+        if (this.touchCount === 1) {
+          this.clearHandler = setTimeout(() => {
+            this.touchCount = 0;
+          }, 2000);
+        }
+      });
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -44,6 +73,13 @@ export default class LogList extends Component {
     }
   }
 
+
+  clear = () => {
+    this.setState({
+      logs: add(clear(this.state.logs), { name: 'log', date: Date.now(), args: ['Console is cleared'] })
+    });
+  };
+
   renderList() {
     if (!this.state.show) return null;
     return (<div
@@ -54,18 +90,15 @@ export default class LogList extends Component {
         right: 0,
         height: this.state.enlarge ? '80%' : '40%',
         background: '#303030',
+        display: 'flex',
+        flexDirection: 'column',
       }}
     >
       <div
         style={{
           background: '#2a2a2a',
           height: '24px',
-          position: 'absolute',
-          left: 0,
-          right: 0,
-          top: 0,
           color: '#fff',
-          zIndex: 5,
         }}
       >
         <span
@@ -94,21 +127,23 @@ export default class LogList extends Component {
       <ul
         ref="logContainer"
         style={{
-          padding: '24px 0 0',
+          padding: 0,
           listStyleType: 'none',
           overflowY: 'auto',
-          height: '100%',
+          // height: '100%',
+          flex: 1,
           margin: 0,
           boxSizing: 'border-box',
           WebkitOverflowScrolling: 'touch',
         }}
       >
         {
-          this.state.logs.map((data) => {
-            return <LogItem key={data.date} {...data} />;
+          this.state.logs.map((data, ind) => {
+            return <LogItem key={ind} {...data} />;
           })
         }
       </ul>
+      {this.props.showInput && <Input clear={this.clear} />}
     </div>);
   }
 
@@ -117,7 +152,7 @@ export default class LogList extends Component {
     return (
       <div>
         {
-          !show && <button
+          !this.props.toggleByTouch && !show && <button
             onClick={() => this.setState({ show: true })}
             style={{
               width: '48px',
