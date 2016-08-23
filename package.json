@@ -1,6 +1,6 @@
 {
   "name": "console-board",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Display all console output in real html",
   "main": "libs/index.js",
   "scripts": {
@@ -20,7 +20,9 @@
     "debug",
     "developer",
     "experience",
-    "vanilla"
+    "vanilla",
+    "react",
+    "inspect"
   ],
   "author": "Xiaobu <yaotianyu0512@gmail.com>",
   "license": "MIT",
@@ -50,7 +52,6 @@
   },
   "dependencies": {
     "moment": "^2.14.1",
-    "react-inspector": "git+https://github.com/xiaobuu/react-inspector.git",
-    "react-json-tree": "^0.10.0"
+    "react-inspector": "git+https://github.com/xiaobuu/react-inspector.git"
   }
 }
