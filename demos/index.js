@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-
-import patchConsole from '../src/patchConsole';
-import LogList from '../src/LogList';
+// import patchConsole from '../src/patchConsole';
+// import LogList from '../src/LogList';
+import injectRender from '../src/injectRender';
 
 class Home extends Component {
   render() {
     return (
       <div>
-        <h1>测试测试</h1>
-        <p>哈哈哈</p>
-        <LogList />
+        <h1 style={{ textAlign: 'center' }}>console-board</h1>
+        <p style={{ textAlign: 'center' }}>Injecting console's output to the dom</p>
+        {injectRender()}
       </div>
     );
   }
